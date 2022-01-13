@@ -17,9 +17,9 @@ function Sidebar(props) {
   const pathName = local.pathname;
   const selectedKey = useMemo(() => {
     switch (pathName) {
-      case "/app1":
+      case "/micro/app1":
         return ["1"];
-      case "/app2":
+      case "/micro/app2":
         return ["2"];
       default:
         return ["0"];
@@ -31,13 +31,13 @@ function Sidebar(props) {
     const itemKey = item.key;
     switch (itemKey) {
       case "1":
-        navigate("/app1");
+        navigate("micro/app1");
         break;
       case "2":
-        navigate("/app2");
+        navigate("micro/app2");
         break;
       default:
-        navigate("/home");
+        navigate("home");
     }
   };
   const { SubMenu } = Menu;
