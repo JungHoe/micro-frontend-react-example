@@ -17,9 +17,10 @@ const { Footer, Sider, Content } = Layout;
 function App() {
   const local = useLocation();
   const navigation = useNavigate();
+  const isHome = local.pathname === "/";
   console.log(local);
   useEffect(() => {
-    if (local.pathname === "/") {
+    if (isHome) {
       navigation("home");
     }
   }, []);
