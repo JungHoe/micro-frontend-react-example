@@ -21,13 +21,13 @@ function Sidebar(props) {
         return ["1"];
       case "/micro/app2":
         return ["2"];
-      default:
+      case "/home":
         return ["0"];
+      default:
+        return [""];
     }
   }, [pathName]);
-  console.log(selectedKey, "ㅅㅇ");
   const handleClick = (item) => {
-    console.log("clicked", item);
     const itemKey = item.key;
     switch (itemKey) {
       case "1":

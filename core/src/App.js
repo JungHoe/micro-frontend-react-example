@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
 import { Layout } from "antd";
+import { useNavigate, Routes, Route, Link } from "react-router-dom";
+import { useLocation } from "react-router";
+import styled from "styled-components";
 import "./App.css";
+import "antd/dist/antd.css";
 import Header from "./component/Header";
 import Sidebar from "./component/Sidebar";
-import { useLocation } from "react-router";
-import { useNavigate, Routes, Route, Link } from "react-router-dom";
-import styled from "styled-components";
-import "antd/dist/antd.css";
+import Home from "./component/Home";
+import ErrorPage from "./component/ErrorPage";
+import DynamicRouter from "./container/DynamicRouter";
 
 const StyledLayOut = styled(Layout)`
   #layoutHeader {
@@ -18,7 +21,6 @@ function App() {
   const local = useLocation();
   const navigation = useNavigate();
   const isHome = local.pathname === "/";
-  console.log(local);
   useEffect(() => {
     if (isHome) {
       navigation("home");
@@ -34,7 +36,14 @@ function App() {
           <Layout.Header id="layoutHeader">
             <Header></Header>
           </Layout.Header>
-          <Content>컨텐츠가 들어갑니다</Content>
+          <Content>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/micro/:appName/*" element={<DynamicRouter />} />
+
+              {/* <Route path="*" element={<ErrorPage />} /> */}
+            </Routes>
+          </Content>
           <Footer>Footer</Footer>
         </Layout>
       </StyledLayOut>

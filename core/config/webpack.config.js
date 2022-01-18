@@ -1,3 +1,4 @@
+require("dotenv").config();
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { WebpackManifestPlugin } = require("webpack-manifest-plugin");
@@ -45,6 +46,7 @@ module.exports = {
   mode: "development",
   entry: "./src/index.js",
   output: {
+    publicPath: "/",
     filename: "bundle.js",
     path: path.resolve(__dirname, "../build"),
   },
@@ -52,7 +54,8 @@ module.exports = {
     hot: true,
     port: 3000,
     open: false,
-    historyApiFallback: { index: "/", disableDotRule: true },
+    historyApiFallback: true,
+    allowedHosts: "all",
   },
   plugins: [
     new HtmlWebpackPlugin({
